@@ -3,9 +3,9 @@ Utils = {}
 function Utils.DebugPrint(level, ...)
   if JsonConfig and JsonConfig.DEBUG and JsonConfig.DEBUG.level >= level then
     if (JsonConfig.DEBUG.level == 0) then
-      print("[Waypoint To Emerald Grove Interior]: " .. ...)
+      print("[Waypoint Inside Emerald Grove]: " .. ...)
     else
-      print("[Waypoint To Emerald Grove Interior][D" .. level .. "]: " .. ...)
+      print("[Waypoint Inside Emerald Grove][D" .. level .. "]: " .. ...)
     end
   end
 end
@@ -46,6 +46,12 @@ function DelayedCall(ms, func)
       Ext.Events.Tick:Unsubscribe(handler)
     end
   end)
+end
+
+function Utils.IsSneaking(character)
+  local characterEntity = Ext.Entity.Get(character)
+  -- REVIEW: There's probably a better way to detect sneaking
+  return characterEntity.SpellModificationContainer and characterEntity.SpellModificationContainer.Modifications and characterEntity.SpellModificationContainer.Modifications.Shout_Hide ~= nil
 end
 
 return Utils

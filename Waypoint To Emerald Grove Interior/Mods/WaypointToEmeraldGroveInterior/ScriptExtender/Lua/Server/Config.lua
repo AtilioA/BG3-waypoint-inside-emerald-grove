@@ -1,14 +1,15 @@
 Config = {}
 
-FolderName = "WaypointToEmeraldGroveInterior"
-Config.configFilePath = "waypoint_to_emerald_grove_interior_config.json"
+FolderName = "Waypoint Inside Emerald Grove"
+Config.configFilePath = "waypoint_inside_emerald_grove_config.json"
 
 Config.defaultConfig = {
     GENERAL = {
         enabled = true, -- Toggle the mod on/off
     },
     FEATURES = {
-        new_waypoint_destination = "THE HOLLOW" -- Options: "SACRED POOL", "ARRON"
+        new_waypoint_destination = "THE HOLLOW", -- Options: "SACRED POOL", "ARRON"
+        original_waypoint_if_sneaking = true,    -- If true, the original waypoint will be used if the player is sneaking
     },
     DEBUG = {
         level = 0 -- 0 = no debug, 1 = minimal, 2 = verbose logs
