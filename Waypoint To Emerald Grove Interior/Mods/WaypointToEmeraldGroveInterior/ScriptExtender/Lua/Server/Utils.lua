@@ -28,9 +28,24 @@ function Utils.GetPartyMembers()
   return teamMembers
 end
 
-function Utils.DumpCharacterEntity(character)
-  local charEntity = Ext.Entity.Get(character)
-  Ext.IO.SaveFile('character-entity-WaypointToEmeraldGroveInterior.json', Ext.DumpExport(charEntity:GetAllComponents()))
+-- Courtesy of FallenStar/Fararagi (https://github.com/FallenStar08/)
+---Delay a function call by the given time
+---@param ms integer
+---@param func function
+function DelayedCall(ms, func)
+  if ms == 0 then
+    func()
+    return
+  end
+  local Time = 0
+  local handler
+  handler = Ext.Events.Tick:Subscribe(function(e)
+    Time = Time + e.Time.DeltaTime * 1000
+    if (Time >= ms) then
+      func()
+      Ext.Events.Tick:Unsubscribe(handler)
+    end
+  end)
 end
 
 return Utils
