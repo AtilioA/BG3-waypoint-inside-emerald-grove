@@ -15,6 +15,9 @@ Config.defaultConfig = {
     }
 }
 
+Config.acceptableThreshold = 4
+Config.validDestinationOptions = { "THE HOLLOW", "SACRED POOL", "ARRON" }
+
 
 function Config.GetModPath(filePath)
     return FolderName .. '/' .. filePath
@@ -43,6 +46,23 @@ function Config.UpdateConfig(existingConfig, defaultConfig)
 
     for key, newValue in pairs(defaultConfig) do
         local oldValue = existingConfig[key]
+
+        if key == "FEATURES" and type(oldValue) == "table" and oldValue.new_waypoint_destination then
+            local closestMatch, distance = String.FindClosestMatch(oldValue.new_waypoint_destination,
+                Config.validDestinationOptions)
+            if distance <= Config.acceptableThreshold then
+                if oldValue.new_waypoint_destination ~= closestMatch then
+                    oldValue.new_waypoint_destination = closestMatch
+                    updated = true
+                    Utils.DebugPrint(1, "Corrected new_waypoint_destination to:" .. closestMatch)
+                end
+            else
+                Utils.DebugPrint(1, "Invalid new_waypoint_destination option. Keeping the default.")
+                oldValue.new_waypoint_destination = defaultConfig.FEATURES.new_waypoint_destination
+                updated = true
+            end
+            -- Continue with the rest of the update logic for other keys and types as before
+        end
 
         if oldValue == nil then
             -- Add missing keys from the default config

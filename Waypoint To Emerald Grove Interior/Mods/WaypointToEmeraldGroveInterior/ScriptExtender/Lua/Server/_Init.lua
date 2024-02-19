@@ -1,4 +1,5 @@
 Ext.Require("Server/Utils.lua")
+Ext.Require("Server/Helpers/String.lua")
 Ext.Require("Server/Config.lua")
 Ext.Require("Server/Teleporting.lua")
 -- Ext.Require("Server/Helpers/Inventory.lua")
@@ -14,7 +15,7 @@ else
     table.remove(MODVERSION)
 
     local versionNumber = table.concat(MODVERSION, ".")
-    Utils.DebugPrint(0, "version " .. versionNumber .. " loaded")
+    Utils.DebugPrint(0, "version " .. versionNumber .. " by Volitio loaded")
 end
 
 local EventSubscription = Ext.Require("Server/SubscribedEvents.lua")
