@@ -31,7 +31,7 @@ function LevenshteinDistance(str1, str2)
 end
 
 function String.FindClosestMatch(user_input, valid_options)
-  local min_distance = math.huge -- Represents infinity
+  local min_distance = math.huge -- Represents infinity, just to initialize the variable
   local closest_match = nil
   for _, option in ipairs(valid_options) do
     local distance = LevenshteinDistance(user_input, option)

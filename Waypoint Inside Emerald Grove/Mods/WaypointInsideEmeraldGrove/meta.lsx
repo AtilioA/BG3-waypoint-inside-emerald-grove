@@ -9,12 +9,12 @@
           <attribute id="Author" type="LSString" value="Volitio" />
           <attribute id="CharacterCreationLevelName" type="FixedString" value="" />
           <attribute id="Description" type="LSString" value="Replaces the destination of the Emerald Grove Environs waypoint to inside the Grove, AKA The Hollow. Configurable through a .json file." />
-          <attribute id="Folder" type="LSString" value="WaypointToEmeraldGroveInterior" />
+          <attribute id="Folder" type="LSString" value="WaypointInsideEmeraldGrove" />
           <attribute id="LobbyLevelName" type="FixedString" value="" />
           <attribute id="MD5" type="LSString" value="" />
           <attribute id="MainMenuBackgroundVideo" type="FixedString" value="" />
           <attribute id="MenuLevelName" type="FixedString" value="" />
-          <attribute id="Name" type="FixedString" value="Waypoint To Emerald Grove Interior" />
+          <attribute id="Name" type="FixedString" value="Waypoint Inside Emerald Grove" />
           <attribute id="NumPlayers" type="uint8" value="4" />
           <attribute id="PhotoBooth" type="FixedString" value="" />
           <attribute id="StartupLevelName" type="FixedString" value="" />

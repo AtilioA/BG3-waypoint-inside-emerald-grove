@@ -58,11 +58,10 @@ function Config.UpdateConfig(existingConfig, defaultConfig)
                     Utils.DebugPrint(1, "Corrected new_waypoint_destination to:" .. closestMatch)
                 end
             else
-                Utils.DebugPrint(1, "Invalid new_waypoint_destination option. Keeping the default.")
+                Utils.DebugPrint(1, "Invalid new_waypoint_destination option. Restoring to default.")
                 oldValue.new_waypoint_destination = defaultConfig.FEATURES.new_waypoint_destination
                 updated = true
             end
-            -- Continue with the rest of the update logic for other keys and types as before
         end
 
         if oldValue == nil then

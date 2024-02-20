@@ -12,8 +12,9 @@ function GetDestinationCoordinates(destinationID)
       Teleporting.destinations[destinationID].z
 end
 
-function Teleporting.TeleportToTheHollow(character)
+function Teleporting.TeleportToEmeraldGrove(character)
   local destinationID = JsonConfig.FEATURES.new_waypoint_destination
+  Utils.DebugPrint(1, "Teleporting to Emerald Grove: (" .. destinationID .. ")")
   local x, y, z = GetDestinationCoordinates(destinationID)
   if x and y and z then
     Osi.TeleportToPosition(character, x, y, z, "TeleportToEmeraldGrove_" .. destinationID,
@@ -22,7 +23,6 @@ function Teleporting.TeleportToTheHollow(character)
       1, 0, 1)
   else
     Utils.DebugPrint(1, "Teleporting to Emerald Grove failed")
-    -- Teleporting.TeleportToTheHollowDefault(character)
   end
 end
 
