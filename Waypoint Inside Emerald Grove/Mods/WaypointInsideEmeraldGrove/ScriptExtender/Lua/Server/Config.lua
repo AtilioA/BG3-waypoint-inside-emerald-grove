@@ -1,6 +1,6 @@
 Config = {}
 
-FolderName = "Waypoint Inside Emerald Grove"
+FolderName = "WaypointInsideEmeraldGrove"
 Config.configFilePath = "waypoint_inside_emerald_grove_config.json"
 
 Config.defaultConfig = {
