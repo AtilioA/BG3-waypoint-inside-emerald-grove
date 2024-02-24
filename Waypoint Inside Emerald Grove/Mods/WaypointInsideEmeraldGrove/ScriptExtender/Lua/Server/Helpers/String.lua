@@ -1,6 +1,11 @@
 String = {}
 
-function LevenshteinDistance(str1, str2)
+function LevenshteinDistance(str1, str2, case_sensitive)
+  if not case_sensitive then
+    str1 = string.lower(str1)
+    str2 = string.lower(str2)
+  end
+
   local len1 = string.len(str1)
   local len2 = string.len(str2)
   local matrix = {}
@@ -30,11 +35,11 @@ function LevenshteinDistance(str1, str2)
   return matrix[len1][len2]
 end
 
-function String.FindClosestMatch(user_input, valid_options)
+function String.FindClosestMatch(user_input, valid_options, case_sensitive)
   local min_distance = math.huge -- Represents infinity, just to initialize the variable
   local closest_match = nil
   for _, option in ipairs(valid_options) do
-    local distance = LevenshteinDistance(user_input, option)
+    local distance = LevenshteinDistance(user_input, option, case_sensitive)
     if distance < min_distance then
       min_distance = distance
       closest_match = option

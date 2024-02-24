@@ -50,7 +50,7 @@ function Config.UpdateConfig(existingConfig, defaultConfig)
 
         if key == "FEATURES" and type(oldValue) == "table" and oldValue.new_waypoint_destination then
             local closestMatch, distance = String.FindClosestMatch(oldValue.new_waypoint_destination,
-                Config.validDestinationOptions)
+                Config.validDestinationOptions, false)
             if distance <= Config.acceptableThreshold then
                 if oldValue.new_waypoint_destination ~= closestMatch then
                     oldValue.new_waypoint_destination = closestMatch
