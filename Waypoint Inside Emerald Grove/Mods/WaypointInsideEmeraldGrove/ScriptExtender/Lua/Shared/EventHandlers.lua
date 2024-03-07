@@ -21,7 +21,7 @@ function ShouldTeleportToGrove(character)
   elseif EHandlers.RegionSwapRejected then
     return false
   else
-    Utils.DebugPrint(2, "Character has entered grove or is not sneaking, teleporting")
+    Utils.DebugPrint(2, "Character has entered grove and is not sneaking, teleporting")
     EHandlers.RegionSwapRejected = false
     return true
   end
