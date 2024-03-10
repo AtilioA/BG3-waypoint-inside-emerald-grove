@@ -32,7 +32,7 @@ function ShouldTeleportToGrove(character)
   local x, y, z = Osi.GetPosition(character)
   EHandlers.OriginalPosition = { character = character, x = x, y = y, z = z }
 
-  local shouldSneakingKeepDestination = JsonConfig.FEATURES.original_waypoint_if_sneaking and Utils.IsSneaking(character)
+  local shouldSneakingKeepDestination = Config:cfg().FEATURES.original_waypoint_if_sneaking and Utils.IsSneaking(character)
   local shouldBlockTeleporting, reason = ShouldFlagsBlockTeleport(character)
   if shouldBlockTeleporting or shouldSneakingKeepDestination then
     if shouldSneakingKeepDestination then
