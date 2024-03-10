@@ -1,28 +1,30 @@
-WIEGPrinter = VolitionCabinetPrinter:New { Prefix = "WIEG", ApplyColor = true }
+WIEGPrinter = VolitionCabinetPrinter:New { Prefix = "WIEG", ApplyColor = true, DebugLevel = Config:GetCurrentDebugLevel() }
 
-function WIEGPrint(...)
+function WIEGPrint(debugLevel, ...)
   WIEGPrinter:SetFontColor(0, 255, 255)
-  WIEGPrinter:Print(...)
+  WIEGPrinter:Print(debugLevel, ...)
 end
 
-function WIEGTest(...)
+function WIEGTest(debugLevel, ...)
   WIEGPrinter:SetFontColor(100, 200, 150)
-  WIEGPrinter:PrintTest(...)
+  WIEGPrinter:PrintTest(debugLevel, ...)
 end
 
-function WIEGDebug(...)
-  WIEGPrinter:SetFontColor(200, 100, 50)
-  WIEGPrinter:PrintDebug(...)
-end
-
-function WIEGWarn(...)
+function WIEGDebug(debugLevel, ...)
   WIEGPrinter:SetFontColor(200, 200, 0)
-  WIEGPrinter:PrintWarning(...)
+  WIEGPrinter:PrintDebug(debugLevel, ...)
 end
 
-function WIEGDump(...)
+function WIEGWarn(debugLevel, ...)
+  WIEGPrinter:SetFontColor(255, 100, 50)
+  WIEGPrinter:PrintWarning(debugLevel, ...)
+end
+
+function WIEGDump(debugLevel, ...)
   WIEGPrinter:SetFontColor(190, 150, 225)
-  WIEGPrinter:Dump(...)
+  WIEGPrinter:Dump(debugLevel, ...)
 end
 
-function WIEGDumpArray(...) WIEGPrinter:DumpArray(...) end
+function WIEGDumpArray(debugLevel, ...)
+  WIEGPrinter:DumpArray(debugLevel, ...)
+end
