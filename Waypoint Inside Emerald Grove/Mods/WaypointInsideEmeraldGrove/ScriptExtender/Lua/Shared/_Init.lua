@@ -3,7 +3,6 @@ setmetatable(Mods.WaypointInsideEmeraldGrove, { __index = Mods.VolitionCabinet }
 Ext.Require("Shared/Helpers/Config.lua")
 Ext.Require("Shared/Helpers/Printer.lua")
 Ext.Require("Shared/Utils.lua")
-Ext.Require("Shared/Helpers/String.lua")
 Ext.Require("Shared/Teleporting.lua")
 -- Ext.Require("Shared/Helpers/Inventory.lua")
 Ext.Require("Shared/EventHandlers.lua")
