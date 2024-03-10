@@ -1,8 +1,8 @@
 Utils = {}
 
 function Utils.DebugPrint(level, ...)
-  if JsonConfig and JsonConfig.DEBUG and JsonConfig.DEBUG.level >= level then
-    if (JsonConfig.DEBUG.level == 0) then
+  if Config:cfg() and Config:cfg().DEBUG and Config:cfg().DEBUG.level >= level then
+    if (Config:cfg().DEBUG.level == 0) then
       print("[Waypoint Inside Emerald Grove]: " .. ...)
     else
       print("[Waypoint Inside Emerald Grove][D" .. level .. "]: " .. ...)
@@ -51,7 +51,8 @@ end
 function Utils.IsSneaking(character)
   local characterEntity = Ext.Entity.Get(character)
   -- REVIEW: There's probably a better way to detect sneaking
-  return characterEntity.SpellModificationContainer and characterEntity.SpellModificationContainer.Modifications and characterEntity.SpellModificationContainer.Modifications.Shout_Hide ~= nil
+  return characterEntity.SpellModificationContainer and characterEntity.SpellModificationContainer.Modifications and
+      characterEntity.SpellModificationContainer.Modifications.Shout_Hide ~= nil
 end
 
 return Utils

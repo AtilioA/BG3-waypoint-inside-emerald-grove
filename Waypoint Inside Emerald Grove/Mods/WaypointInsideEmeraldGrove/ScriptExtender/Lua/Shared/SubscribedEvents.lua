@@ -1,8 +1,9 @@
 CurrentTime = 0
 
 local function SubscribeToEvents()
-  if JsonConfig.GENERAL.enabled == true then
-    Utils.DebugPrint(2, "Subscribing to events with JSON config: " .. Ext.Json.Stringify(JsonConfig, { Beautify = true }))
+  if Config:cfg().GENERAL.enabled == true then
+    Utils.DebugPrint(2,
+      "Subscribing to events with JSON config: " .. Ext.Json.Stringify(Config:cfg(), { Beautify = true }))
 
     Ext.Osiris.RegisterListener("UseStarted", 2, "after", function(character, item)
       if (Osi.IsInPartyWith(character, Osi.GetHostCharacter()) == 1) then
@@ -37,8 +38,8 @@ local function SubscribeToEvents()
 
     Ext.Osiris.RegisterListener("CastedSpell", 5, "after",
       function(caster, spell, spellType, spellElement, storyActionID)
-        Utils.DebugPrint(2,
-          "CastedSpell: " .. spell .. " " .. spellElement .. " " .. storyActionID .. " " .. caster .. " " .. spellType)
+        -- Utils.DebugPrint(2,
+        -- "CastedSpell: " .. spell .. " " .. spellElement .. " " .. storyActionID .. " " .. caster .. " " .. spellType)
         if spell == "Projectile_Jump" then
           CurrentTime = Ext.Utils.MonotonicTime()
           Osi.TimerLaunch("JumpTimer", 2000)
