@@ -1,9 +1,9 @@
 CurrentTime = 0
 
 local function SubscribeToEvents()
-  if Config:cfg().GENERAL.enabled == true then
+  if Config:getCfg().GENERAL.enabled == true then
     Utils.DebugPrint(2,
-      "Subscribing to events with JSON config: " .. Ext.Json.Stringify(Config:cfg(), { Beautify = true }))
+      "Subscribing to events with JSON config: " .. Ext.Json.Stringify(Config:getCfg(), { Beautify = true }))
 
     Ext.Osiris.RegisterListener("UseStarted", 2, "after", function(character, item)
       if (Osi.IsInPartyWith(character, Osi.GetHostCharacter()) == 1) then

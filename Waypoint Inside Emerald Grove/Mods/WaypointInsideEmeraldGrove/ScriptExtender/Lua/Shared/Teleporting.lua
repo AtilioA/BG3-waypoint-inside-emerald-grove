@@ -13,7 +13,7 @@ function GetDestinationCoordinates(destinationID)
 end
 
 function Teleporting.TeleportToEmeraldGrove(character)
-  local destinationID = Config:cfg().FEATURES.new_waypoint_destination
+  local destinationID = Config:getCfg().FEATURES.new_waypoint_destination
   Utils.DebugPrint(1, "Teleporting to Emerald Grove: (" .. destinationID .. ")")
   local x, y, z = GetDestinationCoordinates(destinationID)
   if x and y and z then

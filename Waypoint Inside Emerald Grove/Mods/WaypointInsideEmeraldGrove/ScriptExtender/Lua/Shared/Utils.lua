@@ -1,8 +1,8 @@
 Utils = {}
 
 function Utils.DebugPrint(level, ...)
-  if Config:cfg() and Config:cfg().DEBUG and Config:cfg().DEBUG.level >= level then
-    if (Config:cfg().DEBUG.level == 0) then
+  if Config:getCfg() and Config:getCfg().DEBUG and Config:getCfg().DEBUG.level >= level then
+    if (Config:getCfg().DEBUG.level == 0) then
       print("[Waypoint Inside Emerald Grove]: " .. ...)
     else
       print("[Waypoint Inside Emerald Grove][D" .. level .. "]: " .. ...)

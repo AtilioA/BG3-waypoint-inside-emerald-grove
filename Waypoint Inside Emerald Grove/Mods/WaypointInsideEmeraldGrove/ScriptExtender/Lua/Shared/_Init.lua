@@ -18,7 +18,7 @@ else
 
     local versionNumber = table.concat(MODVERSION, ".")
     WIEGPrint(0, "Waypoint Inside Emerald Grove version " .. versionNumber .. " loaded")
-    WIEGPrint(2, "Config loaded: " .. Ext.Json.Stringify(Config:cfg(), { Beautify = true }))
+    WIEGPrint(2, "Config loaded: " .. Ext.Json.Stringify(Config:getCfg(), { Beautify = true }))
 end
 
 local EventSubscription = Ext.Require("Shared/SubscribedEvents.lua")
