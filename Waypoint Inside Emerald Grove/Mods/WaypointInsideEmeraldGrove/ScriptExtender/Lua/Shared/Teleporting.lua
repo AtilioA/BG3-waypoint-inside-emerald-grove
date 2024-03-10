@@ -26,17 +26,4 @@ function Teleporting.TeleportToEmeraldGrove(character)
   end
 end
 
-function Teleporting.TeleportPartyMembersToCharacter(character)
-  local x, y, z = Osi.GetPosition(character)
-  if x and y and z then
-    Utils.DebugPrint(1, "Teleporting party members to character: (" .. x .. ", " .. y .. ", " .. z .. ")")
-    Osi.TeleportToPosition(character, x, y, z, "TeleportPartyMembersToCharacter_" .. character,
-      1,
-      1,
-      1, 0, 1)
-  else
-    Utils.DebugPrint(1, "Teleporting party members to character failed")
-  end
-end
-
 return Teleporting
