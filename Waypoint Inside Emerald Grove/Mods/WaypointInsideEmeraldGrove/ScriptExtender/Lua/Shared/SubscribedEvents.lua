@@ -1,6 +1,6 @@
-CurrentTime = 0
+SubscribedEvents = {}
 
-local function SubscribeToEvents()
+function SubscribedEvents.SubscribeToEvents()
   if Config:getCfg().GENERAL.enabled == true then
     WIEGDebug(2,
       "Subscribing to events with JSON config: " .. Ext.Json.Stringify(Config:getCfg(), { Beautify = true }))
@@ -11,6 +11,4 @@ local function SubscribeToEvents()
   end
 end
 
-return {
-  SubscribeToEvents = SubscribeToEvents
-}
+return SubscribedEvents

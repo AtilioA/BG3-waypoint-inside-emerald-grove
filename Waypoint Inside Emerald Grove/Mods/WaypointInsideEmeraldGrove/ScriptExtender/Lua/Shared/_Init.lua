@@ -1,12 +1,21 @@
 setmetatable(Mods.WaypointInsideEmeraldGrove, { __index = Mods.VolitionCabinet })
 
-Ext.Require("Shared/Helpers/Config.lua")
-Ext.Require("Shared/Helpers/Printer.lua")
-Ext.Require("Shared/Teleporting.lua")
-Ext.Require("Shared/EventHandlers.lua")
+---Ext.Require files at the path
+---@param path string
+---@param files string[]
+function RequireFiles(path, files)
+    for _, file in pairs(files) do
+        Ext.Require(string.format("%s%s.lua", path, file))
+    end
+end
+
+RequireFiles("Shared/", {
+    "Helpers/_Init",
+    "EventHandlers",
+    "SubscribedEvents",
+})
 
 local MODVERSION = Ext.Mod.GetMod(ModuleUUID).Info.ModVersion
-
 
 if MODVERSION == nil then
     WIEGWarn(0, "loaded (version unknown)")
@@ -21,5 +30,4 @@ end
 
 TeleportHandlerInstance = TeleportingHandler:New()
 
-local EventSubscription = Ext.Require("Shared/SubscribedEvents.lua")
-EventSubscription.SubscribeToEvents()
+SubscribedEvents.SubscribeToEvents()
