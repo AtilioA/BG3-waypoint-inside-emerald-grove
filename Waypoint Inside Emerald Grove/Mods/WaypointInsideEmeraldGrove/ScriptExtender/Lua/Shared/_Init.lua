@@ -2,9 +2,7 @@ setmetatable(Mods.WaypointInsideEmeraldGrove, { __index = Mods.VolitionCabinet }
 
 Ext.Require("Shared/Helpers/Config.lua")
 Ext.Require("Shared/Helpers/Printer.lua")
-Ext.Require("Shared/Utils.lua")
 Ext.Require("Shared/Teleporting.lua")
--- Ext.Require("Shared/Helpers/Inventory.lua")
 Ext.Require("Shared/EventHandlers.lua")
 
 local MODVERSION = Ext.Mod.GetMod(ModuleUUID).Info.ModVersion
@@ -20,6 +18,8 @@ else
     WIEGPrint(0, "Waypoint Inside Emerald Grove version " .. versionNumber .. " loaded")
     WIEGPrint(2, "Config loaded: " .. Ext.Json.Stringify(Config:getCfg(), { Beautify = true }))
 end
+
+TeleportHandlerInstance = TeleportingHandler:New()
 
 local EventSubscription = Ext.Require("Shared/SubscribedEvents.lua")
 EventSubscription.SubscribeToEvents()

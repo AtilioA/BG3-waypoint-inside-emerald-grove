@@ -33,19 +33,19 @@ function ShouldTeleportToGrove(character)
   EHandlers.OriginalPosition = { character = character, x = x, y = y, z = z }
 
   local shouldSneakingKeepDestination = Config:getCfg().FEATURES.original_waypoint_if_sneaking and
-  Utils.IsSneaking(character)
+      Helpers.Character:IsSneaking(character)
   local shouldBlockTeleporting, reason = ShouldFlagsBlockTeleport(character)
   if shouldBlockTeleporting or shouldSneakingKeepDestination then
     if shouldSneakingKeepDestination then
       reason = "Character is sneaking"
     end
 
-    Utils.DebugPrint(2, "Not teleporting. Reason: " .. reason)
+    WIEGPrint(1, "Not teleporting. Reason: " .. reason)
     return false
   elseif EHandlers.RegionSwapRejected then
     return false
   else
-    Utils.DebugPrint(2,
+    WIEGPrint(2,
       "Character has entered grove, lockdown has not happened, and character is not sneaking, teleporting")
     EHandlers.RegionSwapRejected = false
     return true
@@ -53,12 +53,8 @@ function ShouldTeleportToGrove(character)
 end
 
 function EHandlers.OnTeleportToWaypoint(character, trigger)
-  Utils.DebugPrint(2, "OnTeleportToWaypoint: " .. character .. " " .. trigger)
-  if trigger == Teleporting.EMERALD_GROVE_ENVIRONS_TRIGGER and ShouldTeleportToGrove(character) then
-    DelayedCall(100, function()
-      Teleporting.TeleportToEmeraldGrove(character)
-    end)
-  end
+  WIEGDebug(2, "OnTeleportToWaypoint: " .. character .. " " .. trigger)
+  TeleportHandlerInstance:HandleWaypointTrigger(character, trigger)
 
   EHandlers.RegionSwapRejected = false
 end
@@ -66,7 +62,7 @@ end
 function EHandlers.OnReadyCheckFailed(id)
   -- Should be triggered even if the target isn't Environs, BUT it works, so...
   if id == "WaypointTravel_RegionSwap" then
-    Utils.DebugPrint(1, "Region swap was rejected, teleporting back to original position.")
+    WIEGPrint(0, "Region swap was rejected, teleporting back to original position.")
     if EHandlers.OriginalPosition then
       local character, x, y, z = EHandlers.OriginalPosition.character, EHandlers.OriginalPosition.x,
           EHandlers.OriginalPosition.y, EHandlers.OriginalPosition.z
