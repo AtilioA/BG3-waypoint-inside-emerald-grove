@@ -13,7 +13,7 @@ Config = Helpers.Config:New({
             level = 0 -- 0 = no debug, 1 = minimal, 2 = verbose logs
         }
     },
-
+    onConfigReloaded = {},
     acceptableThreshold = 4,
     validDestinationOptions = { "THE HOLLOW", "SACRED POOL", "ARRON" }
 })
@@ -55,11 +55,8 @@ end
 
 Config:UpdateModConfig(true)
 
--- Reload the JSON config when executing `reload_config` on SE console
--- An anonymous function is needed so that `self` is defined during the call
-Ext.RegisterConsoleCommand('wieg_reload_config', function()
-    Config:UpdateModConfig()
-    -- Update the debug level for the printer, otherwise it will remain outdated
-    WIEGPrinter.DebugLevel = Config:GetCurrentDebugLevel()
-    WIEGPrint(0, "Config reloaded: " .. Ext.Json.Stringify(Config:getCfg(), { Beautify = true }))
+Config:AddConfigReloadedCallback(function(configInstance)
+    WIEGPrinter.DebugLevel = configInstance:GetCurrentDebugLevel()
+    WIEGPrint(0, "Config reloaded: " .. Ext.Json.Stringify(configInstance:getCfg(), { Beautify = true }))
 end)
+Config:RegisterReloadConfigCommand("wieg")
