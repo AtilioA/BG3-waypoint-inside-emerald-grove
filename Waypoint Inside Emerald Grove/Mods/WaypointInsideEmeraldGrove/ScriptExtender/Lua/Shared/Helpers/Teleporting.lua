@@ -9,6 +9,7 @@ TeleportingHandler = _Class:Create("TeleportingHandler")
 function TeleportingHandler:Init()
   self.EmeraldGroveEnvironsWaypointTrigger = "S_DEN_WaypointPos_cdd91969-67d0-454e-b27b-cf34e542956b"
   self.VFX_Waypoint_Portal = "f545f66c-87c8-8dde-cd27-16539cb0dc45"
+  self.VFX_Waypoint_Portal_Loop = "ac49625c-c1fb-a34c-911c-d43e65164364"
   self.destinations = {
     ['ARRON'] = { x = 205.95933532715, y = 29.75, z = 505.13491821289 },
     ['THE HOLLOW'] = { x = 188.07084655762, y = 19.72265625, z = 562.81359863281 },
@@ -77,12 +78,18 @@ end
   ]]
 function TeleportingHandler:PlayDestinationEffect(destinationID)
   if destinationID == "THE HOLLOW" then
-    Osi.PlayEffectAtPositionAndRotation(self.VFX_Waypoint_Portal, 190, 21, 562, 92, 1)
-    -- local fxHandle = Osi.PlayLoopEffectAtPositionAndRotation(self.VFX_Waypoint_Portal, 190, 21, 562, 0, 0, 92, 1)
-    -- _D(fxHandle)
-    -- Helpers.Timer:OnTime(5000, function()
-    --   Osi.StopLoopEffect(fxHandle)
-    -- end)
+    local fxHandle = Osi.PlayLoopEffectAtPositionAndRotation(self.VFX_Waypoint_Portal_Loop, 189.75, 21.5, 561.9,
+      40,
+      92,
+      0, 1)
+    if fxHandle == nil then
+      WIEGWarn(0, "Failed to play loop effect")
+      return
+    end
+    -- Stop the looping effect after 2.5 seconds
+    Helpers.Timer:OnTime(2500, function()
+      Osi.StopLoopEffect(tonumber(fxHandle))
+    end)
   elseif destinationID == "ARRON" then
     Osi.PlayEffectAtPositionAndRotation(self.VFX_Waypoint_Portal, 206, 29.5, 505, 92, 1)
   end
