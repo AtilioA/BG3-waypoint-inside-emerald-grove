@@ -18,13 +18,13 @@ RequireFiles("Shared/", {
 local MODVERSION = Ext.Mod.GetMod(ModuleUUID).Info.ModVersion
 
 if MODVERSION == nil then
-    WIEGWarn(0, "loaded (version unknown)")
+    WIEGWarn(0, "Volitio's Waypoint Inside Emerald Grove loaded (version unknown)")
 else
     -- Remove the last element (build/revision number) from the MODVERSION table
     table.remove(MODVERSION)
 
     local versionNumber = table.concat(MODVERSION, ".")
-    WIEGPrint(0, "Waypoint Inside Emerald Grove version " .. versionNumber .. " loaded")
+    WIEGPrint(0, "Volitio's Waypoint Inside Emerald Grove version " .. versionNumber .. " loaded")
     WIEGPrint(2, "Config loaded: " .. Ext.Json.Stringify(Config:getCfg(), { Beautify = true }))
 end
 

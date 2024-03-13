@@ -1,4 +1,4 @@
-WIEGPrinter = VolitionCabinetPrinter:New { Prefix = "WIEG", ApplyColor = true, DebugLevel = Config:GetCurrentDebugLevel() }
+WIEGPrinter = VolitionCabinetPrinter:New { Prefix = "Waypoint Inside Emerald Grove", ApplyColor = true, DebugLevel = Config:GetCurrentDebugLevel() }
 
 function WIEGPrint(debugLevel, ...)
   WIEGPrinter:SetFontColor(0, 255, 255)
