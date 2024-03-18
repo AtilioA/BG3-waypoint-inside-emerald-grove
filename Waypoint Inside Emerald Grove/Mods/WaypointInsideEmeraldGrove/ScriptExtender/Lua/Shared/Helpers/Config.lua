@@ -29,7 +29,7 @@ function Helpers.Config:UpdateModConfig(updateFile)
 
         -- Specific logic for treating the FEATURES key, using levenshtein distance to correct typos
         if key == "FEATURES" and type(oldValue) == "table" and oldValue.new_waypoint_destination then
-            local closestMatch, distance = String:FindClosestMatch(oldValue.new_waypoint_destination,
+            local closestMatch, distance = Helpers.String:FindClosestMatch(oldValue.new_waypoint_destination,
                 self.validDestinationOptions, false)
             if distance <= self.acceptableThreshold then
                 if oldValue.new_waypoint_destination ~= closestMatch then
