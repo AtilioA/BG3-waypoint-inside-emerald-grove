@@ -1,4 +1,4 @@
-Config = Helpers.Config:New({
+Config = VCHelpers.Config:New({
     folderName = "WaypointInsideEmeraldGrove",
     configFilePath = "waypoint_inside_emerald_grove_config.json",
     defaultConfig = {
@@ -10,7 +10,7 @@ Config = Helpers.Config:New({
             original_waypoint_if_sneaking = true,    -- If true, the original waypoint will be used if the player is sneaking
         },
         DEBUG = {
-            level = 0 -- 0 = no debug, 1 = minimal, 2 = verbose logs
+            level = 0 -- 0 = no debug, 1 = minimal, 2 = verbose debug logs
         }
     },
     onConfigReloaded = {},
@@ -18,7 +18,7 @@ Config = Helpers.Config:New({
     validDestinationOptions = { "THE HOLLOW", "SACRED POOL", "ARRON" }
 })
 
-function Helpers.Config:UpdateModConfig(updateFile)
+function VCHelpers.Config:UpdateModConfig(updateFile)
     local updated = false
 
     Config:UpdateCurrentConfig()
@@ -29,7 +29,7 @@ function Helpers.Config:UpdateModConfig(updateFile)
 
         -- Specific logic for treating the FEATURES key, using levenshtein distance to correct typos
         if key == "FEATURES" and type(oldValue) == "table" and oldValue.new_waypoint_destination then
-            local closestMatch, distance = Helpers.String:FindClosestMatch(oldValue.new_waypoint_destination,
+            local closestMatch, distance = VCHelpers.String:FindClosestMatch(oldValue.new_waypoint_destination,
                 self.validDestinationOptions, false)
             if distance <= self.acceptableThreshold then
                 if oldValue.new_waypoint_destination ~= closestMatch then

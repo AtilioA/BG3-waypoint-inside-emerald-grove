@@ -38,7 +38,7 @@ function TeleportingHandler:ShouldTeleportToGrove(character)
   TeleportingHandler.OriginalPosition = { character = character, x = x, y = y, z = z }
 
   local shouldSneakingKeepDestination = Config:getCfg().FEATURES.original_waypoint_if_sneaking and
-      Helpers.Character:IsSneaking(character)
+      VCHelpers.Character:IsSneaking(character)
   local shouldBlockTeleporting, reason = ShouldFlagsBlockTeleport(character)
   if shouldBlockTeleporting or shouldSneakingKeepDestination then
     if shouldSneakingKeepDestination then
@@ -87,7 +87,7 @@ function TeleportingHandler:PlayDestinationEffect(destinationID)
       return
     end
     -- Stop the looping effect after 2.5 seconds
-    Helpers.Timer:OnTime(2500, function()
+    VCHelpers.Timer:OnTime(2750, function()
       Osi.StopLoopEffect(tonumber(fxHandle))
     end)
   elseif destinationID == "ARRON" then
