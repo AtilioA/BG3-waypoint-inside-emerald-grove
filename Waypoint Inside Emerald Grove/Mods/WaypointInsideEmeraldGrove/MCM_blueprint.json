@@ -1,0 +1,78 @@
+{
+    "SchemaVersion": 1,
+    "Tabs": [
+        {
+            "TabName": "General",
+            "TabId": "general",
+            "Sections": [
+                {
+                    "SectionName": "General settings",
+                    "SectionId": "general",
+                    "Settings": [
+                        {
+                            "Id": "enabled",
+                            "Name": "Enabled",
+                            "Type": "checkbox",
+                            "Default": true,
+                            "Description": "Toggle the mod on/off",
+                            "Handles": {
+                                "DescriptionHandle": "Ativar/desativar o mod",
+                                "NameHandle": "Ativado"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "SectionId": "features",
+                    "SectionName": "Features",
+                    "Settings": [
+                        {
+                            "Id": "waypoint_destination",
+                            "Name": "'Emerald Grove' waypoint destination",
+                            "Type": "enum",
+                            "Default": "The Hollow",
+                            "Options": {
+                                "Choices": [
+                                    "The Hollow",
+                                    "Sacred Pool",
+                                    "Arron"
+                                ]
+                            },
+                            "Description": "The new waypoint destination.\nArron = next to Arron.\nThe Hollow = next to Dammon and Ethel.\nSacred Pool = next to the ritual.",
+                            "Handles": {
+                                "NameHandle": "Destino do ponto de rota para 'Santuário Esmeralda'",
+                                "ChoicesHandles": [
+                                    "hd91d5e76g62edg4920gb442g2345297e5b32",
+                                    "hc5d61a48g399dg45fcga59dg530009446fba",
+                                    "h9aefb797g1e26g40dcgbf8cg77ec93e27082"
+                                ],
+                                "DescriptionHandle": "O novo destino do ponto de rota.\nArron = próximo do Arron.\nO Hollow = próximo de Dammon e Ethel.\nSacred Pool = próximo do ritual."
+                            }
+                        }
+                    ]
+                },
+                {
+                    "SectionName": "Debug",
+                    "SectionId": "debug",
+                    "Settings": [
+                        {
+                            "Id": "debug_level",
+                            "Name": "Debug Level",
+                            "Type": "slider_int",
+                            "Default": 0,
+                            "Options": {
+                                "Min": 0,
+                                "Max": 2
+                            },
+                            "Description": "0 = no debug, 1 = minimal, 2 = verbose debug logs",
+                            "Handles": {
+                                "DescriptionHandle": "0 = sem debug, 1 = mínimo, 2 = logs verbosos",
+                                "NameHandle": "Nível de prints de depuração"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
