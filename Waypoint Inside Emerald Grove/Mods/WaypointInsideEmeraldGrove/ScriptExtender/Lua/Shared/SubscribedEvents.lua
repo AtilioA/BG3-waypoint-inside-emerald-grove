@@ -15,6 +15,7 @@ function SubscribedEvents.SubscribeToEvents()
         "Subscribing to events with JSON config: " ..
         Ext.Json.Stringify(Mods.BG3MCM.MCMAPI:GetAllModSettings(ModuleUUID), { Beautify = true }))
 
+    Ext.Osiris.RegisterListener("LevelGameplayStarted", 2, "after", conditionalWrapper(EHandlers.OnLevelGameplayStarted))
     Ext.Osiris.RegisterListener("TeleportToWaypoint", 2, "after", conditionalWrapper(EHandlers.OnTeleportToWaypoint))
     Ext.Osiris.RegisterListener("ReadyCheckFailed", 1, "after", conditionalWrapper(EHandlers.OnReadyCheckFailed))
 end
