@@ -20,9 +20,9 @@ function TeleportingHandler:Init()
     self.VFX_Waypoint_Portal = "f545f66c-87c8-8dde-cd27-16539cb0dc45"
     self.VFX_Waypoint_Portal_Loop = "ac49625c-c1fb-a34c-911c-d43e65164364"
     self.destinations = {
-        ['ARRON'] = { x = 205.95933532715, y = 29.75, z = 505.13491821289 },
-        ['THE HOLLOW'] = { x = 188.07084655762, y = 19.72265625, z = 562.81359863281 },
-        ['SACRED POOL'] = { x = 260.72442626953, y = 19.84765625, z = 540.83435058594 },
+        ['Arron'] = { x = 205.95933532715, y = 29.75, z = 505.13491821289 },
+        ['The Hollow'] = { x = 188.07084655762, y = 19.72265625, z = 562.81359863281 },
+        ['Sacred Pool'] = { x = 260.72442626953, y = 19.84765625, z = 540.83435058594 },
     }
     self.originalPosition = nil
     self.regionSwapRejected = false
@@ -46,14 +46,8 @@ function TeleportingHandler:ShouldTeleportToGrove(character)
     local x, y, z = Osi.GetPosition(character)
     TeleportingHandler.OriginalPosition = { character = character, x = x, y = y, z = z }
 
-    local shouldSneakingKeepDestination = Config:getCfg().FEATURES.original_waypoint_if_sneaking and
-        VCHelpers.Character:IsSneaking(character)
     local shouldBlockTeleporting, reason = ShouldFlagsBlockTeleport(character)
-    if shouldBlockTeleporting or shouldSneakingKeepDestination then
-        if shouldSneakingKeepDestination then
-            reason = "Character is sneaking"
-        end
-
+    if shouldBlockTeleporting then
         WIEGPrint(1, "Not teleporting. Reason: " .. reason)
         return false
     elseif TeleportingHandler.RegionSwapRejected then
@@ -86,7 +80,7 @@ end
   Try to detect when the character is teleported and game has "loaded"? and then stop the effect. Or just stop it after ~2 seconds.
   ]]
 function TeleportingHandler:PlayDestinationEffect(destinationID)
-    if destinationID == "THE HOLLOW" then
+    if destinationID == "The Hollow" then
         local fxHandle = Osi.PlayLoopEffectAtPositionAndRotation(self.VFX_Waypoint_Portal_Loop, 189.75, 21.5, 561.9,
             40,
             92,
@@ -99,13 +93,13 @@ function TeleportingHandler:PlayDestinationEffect(destinationID)
         VCHelpers.Timer:OnTime(2500, function()
             Osi.StopLoopEffect(tonumber(fxHandle))
         end)
-    elseif destinationID == "ARRON" then
+    elseif destinationID == "Arron" then
         Osi.PlayEffectAtPositionAndRotation(self.VFX_Waypoint_Portal, 206, 29.5, 505, 92, 1)
     end
 end
 
 function TeleportingHandler:TeleportToEmeraldGrove(character)
-    local destinationID = Config:getCfg().FEATURES.new_waypoint_destination
+    local destinationID = Mods.BG3MCM.MCMAPI:GetSettingValue("waypoint_destination", ModuleUUID)
     WIEGPrint(1, "Teleporting to Emerald Grove: (" .. destinationID .. ")")
     local x, y, z = self:GetDestinationCoordinates(destinationID)
     if x and y and z then

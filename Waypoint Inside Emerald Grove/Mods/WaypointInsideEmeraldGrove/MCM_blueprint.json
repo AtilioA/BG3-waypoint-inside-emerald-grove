@@ -10,14 +10,14 @@
                     "SectionId": "general",
                     "Settings": [
                         {
-                            "Id": "enabled",
-                            "Name": "Enabled",
+                            "Id": "mod_enabled",
+                            "Name": "Enable mod",
                             "Type": "checkbox",
                             "Default": true,
                             "Description": "Toggle the mod on/off",
                             "Handles": {
-                                "DescriptionHandle": "Ativar/desativar o mod",
-                                "NameHandle": "Ativado"
+                                "DescriptionHandle": "hf7e1fdad8b854201b1c8ced5733dbe2115f3",
+                                "NameHandle": "h4e2f5b5ed2a94b4596a20ec6c1f60342dc22"
                             }
                         }
                     ]
@@ -40,13 +40,13 @@
                             },
                             "Description": "The new waypoint destination.\nArron = next to Arron.\nThe Hollow = next to Dammon and Ethel.\nSacred Pool = next to the ritual.",
                             "Handles": {
-                                "NameHandle": "Destino do ponto de rota para 'Santuário Esmeralda'",
+                                "NameHandle": "h76f52b9ea0624bb78f83a04c509562f86d92",
                                 "ChoicesHandles": [
                                     "hd91d5e76g62edg4920gb442g2345297e5b32",
                                     "hc5d61a48g399dg45fcga59dg530009446fba",
                                     "h9aefb797g1e26g40dcgbf8cg77ec93e27082"
                                 ],
-                                "DescriptionHandle": "O novo destino do ponto de rota.\nArron = próximo do Arron.\nO Hollow = próximo de Dammon e Ethel.\nSacred Pool = próximo do ritual."
+                                "DescriptionHandle": "h4ab161d2c7624f54b3c5bae49244b5090142"
                             }
                         }
                     ]
@@ -66,8 +66,8 @@
                             },
                             "Description": "0 = no debug, 1 = minimal, 2 = verbose debug logs",
                             "Handles": {
-                                "DescriptionHandle": "0 = sem debug, 1 = mínimo, 2 = logs verbosos",
-                                "NameHandle": "Nível de prints de depuração"
+                                "DescriptionHandle": "h99efdcc386f349cc9dc5c789ec3606ab35ce",
+                                "NameHandle": "hf7e1fdad8b854201b1c8ced5733dbe2115f3"
                             }
                         }
                     ]

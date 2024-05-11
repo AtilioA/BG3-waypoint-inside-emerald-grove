@@ -29,7 +29,6 @@ else
 
     local versionNumber = table.concat(MODVERSION, ".")
     WIEGPrint(0, "Volitio's Waypoint Inside Emerald Grove version " .. versionNumber .. " loaded")
-    WIEGPrint(2, "Config loaded: " .. Ext.Json.Stringify(Config:getCfg(), { Beautify = true }))
 end
 
 TeleportHandlerInstance = TeleportingHandler:New()

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentList>
+	<content contentuid="hfa7d555dg85fcg4783ga2ddged94fdd3ae28" version="9">Destino do ponto de rota para 'Santuário Esmeralda'</content>
+    <content contentuid="h4ab161d2c7624f54b3c5bae49244b5090142">O novo destino do ponto de rota.\nArron = próximo do Arron.\nO Hollow = próximo de Dammon e Ethel.\nSacred Pool = próximo do ritual.</content>
+    <content contentuid="h4e2f5b5ed2a94b4596a20ec6c1f60342dc22">Mod ativado</content>
+    <content contentuid="hf7e1fdad8b854201b1c8ced5733dbe2115f3">Ativar/desativar o mod.</content>
+    <content contentuid="h99efdcc386f349cc9dc5c789ec3606ab35ce">0 = sem debug, 1 = mínimo, 2 = logs verbosos</content>
+    <content contentuid="hf7e1fdad8b854201b1c8ced5733dbe2115f3">Nível de prints de depuração</content>
+</contentList>

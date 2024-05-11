@@ -1,5 +1,4 @@
 RequireFiles("Shared/Helpers/", {
-  "Config",
-  "Printer",
-  "Teleporting",
+    "Printer",
+    "Teleporting",
 })
