@@ -5,6 +5,11 @@ function EHandlers.OnLevelGameplayStarted(levelName, isEditorMode)
         WIEGDebug(1, "Character has entered grove at some point, trying to unlock custom waypoint")
         WaypointHandler:UnlockCustomEmeraldGroveWaypoint()
     end
+
+    if WaypointHandler:HasRitualOfThornsBeenActivated(Osi.GetHostCharacter()) then
+        WIEGDebug(1, "Ritual of Thorns has been activated, trying to lock custom waypoint")
+        WaypointHandler:LockCustomEmeraldGroveWaypoint()
+    end
 end
 
 function EHandlers.OnTeleportToWaypoint(character, trigger)

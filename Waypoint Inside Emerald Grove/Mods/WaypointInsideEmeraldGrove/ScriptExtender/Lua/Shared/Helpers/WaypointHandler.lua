@@ -38,6 +38,10 @@ function WaypointHandler:UnlockCustomEmeraldGroveWaypoint()
         Osi.GetHostCharacter())
 end
 
+function WaypointHandler:LockCustomEmeraldGroveWaypoint()
+    Osi.LockWaypoint(Ext.Loca.GetTranslatedString(WaypointHandler.EmeraldGroveHandle), Osi.GetHostCharacter())
+end
+
 --- Check flags/DBs for whether the Grove lockdown has happened already
 ---@param character GUIDSTRING The character to check against (won't even be used for DB check)
 function WaypointHandler:ShouldFlagsBlockTeleport(character)
