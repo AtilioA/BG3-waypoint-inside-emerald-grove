@@ -104,7 +104,7 @@ function WaypointHandler:PlayDestinationEffect(destinationID)
 end
 
 function WaypointHandler:TeleportToEmeraldGrove(character)
-    local destinationID = Mods.BG3MCM.MCMAPI:GetSettingValue("waypoint_destination", ModuleUUID)
+    local destinationID = MCMGet("waypoint_destination")
     WIEGPrint(1, "Teleporting to Emerald Grove: (" .. destinationID .. ")")
     local x, y, z = self:GetDestinationCoordinates(destinationID)
     if x and y and z then

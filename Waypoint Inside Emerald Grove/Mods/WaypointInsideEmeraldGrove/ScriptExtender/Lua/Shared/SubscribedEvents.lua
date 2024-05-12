@@ -3,7 +3,7 @@ SubscribedEvents = {}
 function SubscribedEvents.SubscribeToEvents()
     local function conditionalWrapper(handler)
         return function(...)
-            if Mods.BG3MCM.MCMAPI:GetSettingValue("mod_enabled", ModuleUUID) then
+            if MCMGet("mod_enabled") then
                 handler(...)
             else
                 WIEGDebug(1, "Event handling is disabled.")

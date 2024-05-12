@@ -1,13 +1,13 @@
-WIEGPrinter = VolitionCabinetPrinter:New { Prefix = "Waypoint Inside Emerald Grove", ApplyColor = true, DebugLevel = Mods.BG3MCM.MCMAPI:GetSettingValue("debug_level", ModuleUUID) }
+WIEGPrinter = VolitionCabinetPrinter:New { Prefix = "Waypoint Inside Emerald Grove", ApplyColor = true, DebugLevel = MCMGet("debug_level") }
 
 -- Update the Printer debug level when the setting is changed, since the value is only used during the object's creation
 Ext.RegisterNetListener("MCM_Saved_Setting", function(call, payload)
     local data = Ext.Json.Parse(payload)
-    if not data or data.modGUID ~= ModuleUUID or not data.settingName then
+    if not data or data.modGUID ~= ModuleUUID or not data.settingId then
         return
     end
 
-    if data.settingName == "debug_level" then
+    if data.settingId == "debug_level" then
         WIEGDebug(0, "Setting debug level to " .. data.value)
         WIEGPrinter.DebugLevel = data.value
     end

@@ -1,5 +1,23 @@
 setmetatable(Mods.WaypointInsideEmeraldGrove, { __index = Mods.VolitionCabinet })
 
+local deps = {
+    VCModuleUUID = "f97b43be-7398-4ea5-8fe2-be7eb3d4b5ca",
+    MCMModuleUUID = "755a8a72-407f-4f0d-9a33-274ac0f0b53d"
+}
+if not Ext.Mod.IsModLoaded(deps.VCModuleUUID) then
+    Ext.Utils.Print(
+    "Volition Cabinet is missing and is a hard requirement. PLEASE MAKE SURE IT IS ENABLED IN YOUR MOD MANAGER.")
+end
+
+if not Ext.Mod.IsModLoaded(deps.MCMModuleUUID) then
+    Ext.Utils.Print(
+    "BG3 Mod Configuration Menu is missing and is a hard requirement. PLEASE MAKE SURE IT IS ENABLED IN YOUR MOD MANAGER.")
+end
+
+function MCMGet(settingID)
+    return Mods.BG3MCM.MCMAPI:GetSettingValue(settingID, ModuleUUID)
+end
+
 ---Ext.Require files at the path
 ---@param path string
 ---@param files string[]
@@ -14,20 +32,6 @@ RequireFiles("Shared/", {
     "EventHandlers",
     "SubscribedEvents",
 })
-
-local deps = {
-    VCModuleUUID = "f97b43be-7398-4ea5-8fe2-be7eb3d4b5ca",
-    MCMModuleUUID = "755a8a72-407f-4f0d-9a33-274ac0f0b53d"
-}
-if not Ext.Mod.IsModLoaded(deps.VCModuleUUID) then
-    Ext.Utils.Print(
-    "Volition Cabinet is missing and is a hard requirement. PLEASE MAKE SURE IT IS ENABLED IN YOUR MOD MANAGER.")
-end
-
-if not Ext.Mod.IsModLoaded(deps.MCMModuleUUID) then
-    Ext.Utils.Print(
-    "BG3 Mod Configuration Menu is missing and is a hard requirement. PLEASE MAKE SURE IT IS ENABLED IN YOUR MOD MANAGER.")
-end
 
 local MODVERSION = Ext.Mod.GetMod(ModuleUUID).Info.ModVersion
 if MODVERSION == nil then
