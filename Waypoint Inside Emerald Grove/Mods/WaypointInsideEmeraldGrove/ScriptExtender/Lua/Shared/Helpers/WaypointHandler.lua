@@ -40,6 +40,7 @@ end
 
 function WaypointHandler:LockCustomEmeraldGroveWaypoint()
     Osi.LockWaypoint(Ext.Loca.GetTranslatedString(WaypointHandler.EmeraldGroveHandle), Osi.GetHostCharacter())
+    Osi.LockWaypoint("Emerald Grove", Osi.GetHostCharacter())
 end
 
 --- Check flags/DBs for whether the Grove lockdown has happened already
