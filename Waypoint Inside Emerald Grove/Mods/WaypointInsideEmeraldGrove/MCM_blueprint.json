@@ -40,7 +40,7 @@
                             },
                             "Description": "The new waypoint destination.\nArron = next to Arron.\nThe Hollow = next to Dammon and Ethel.\nSacred Pool = next to the ritual.",
                             "Handles": {
-                                "NameHandle": "hfa7d555dg85fcg4783ga2ddged94fdd3ae28",
+                                "NameHandle": "h5561f0765bf6404888645540503aac450f0e",
                                 "ChoicesHandles": [
                                     "hd91d5e76g62edg4920gb442g2345297e5b32",
                                     "hc5d61a48g399dg45fcga59dg530009446fba",
@@ -67,7 +67,7 @@
                             "Description": "0 = no debug, 1 = minimal, 2 = verbose debug logs",
                             "Handles": {
                                 "DescriptionHandle": "h99efdcc386f349cc9dc5c789ec3606ab35ce",
-                                "NameHandle": "hf7e1fdad8b854201b1c8ced5733dbe2115f3"
+                                "NameHandle": "he2d84361d1b34c038c249c3c5b0a75d8c5f9"
                             }
                         }
                     ]
