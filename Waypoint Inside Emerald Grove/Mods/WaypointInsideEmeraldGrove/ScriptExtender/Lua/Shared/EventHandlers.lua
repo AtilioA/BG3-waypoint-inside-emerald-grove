@@ -1,15 +1,13 @@
 EHandlers = {}
 
 function EHandlers.OnLevelGameplayStarted(levelName, isEditorMode)
-    if WaypointFlagsHandler:HasCharacterEverEnteredGrove(Osi.GetHostCharacter()) then
-        WIEGDebug(1, "Character has entered grove at some point, trying to unlock custom waypoint")
-        WaypointHandler:UnlockCustomEmeraldGroveWaypoint()
-    end
-
     local waypointBlockageInfo = WaypointFlagsHandler:CheckWaypointBlockage(Osi.GetHostCharacter())
     if waypointBlockageInfo and waypointBlockageInfo.isBlocked then
         WIEGDebug(1, "Locking custom waypoint. Reason: " .. waypointBlockageInfo.reason)
         WaypointHandler:LockCustomEmeraldGroveWaypoint()
+    elseif WaypointFlagsHandler:HasCharacterEverEnteredGrove(Osi.GetHostCharacter()) then
+        WIEGDebug(1, "Character has entered grove at some point, trying to unlock custom waypoint")
+        WaypointHandler:UnlockCustomEmeraldGroveWaypoint()
     end
 end
 
