@@ -14,7 +14,7 @@
                             "Name": "Enable mod",
                             "Type": "checkbox",
                             "Default": true,
-                            "Description": "Toggle the mod on/off",
+                            "Description": "Toggle the mod on/off without uninstalling it.",
                             "Handles": {
                                 "DescriptionHandle": "hf7e1fdad8b854201b1c8ced5733dbe2115f3",
                                 "NameHandle": "h4e2f5b5ed2a94b4596a20ec6c1f60342dc22"

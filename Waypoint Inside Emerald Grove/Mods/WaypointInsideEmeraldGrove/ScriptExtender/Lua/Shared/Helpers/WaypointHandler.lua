@@ -12,9 +12,6 @@ WaypointHandler.CustomEmeraldGroveWaypointTrigger = "S_DEN_TheHollowWaypointPos_
 WaypointHandler.EmeraldGroveEnvironsWaypointTrigger = "S_DEN_WaypointPos_cdd91969-67d0-454e-b27b-cf34e542956b"
 WaypointHandler.VFX_Waypoint_Portal = "f545f66c-87c8-8dde-cd27-16539cb0dc45"
 WaypointHandler.VFX_Waypoint_Portal_Loop = "ac49625c-c1fb-a34c-911c-d43e65164364"
--- DEN_General_State_EnteredCave set when a character has entered The Hollow
-WaypointHandler.HasEnteredGroveFlagGUID = "18cfaaeb-c0df-46ac-962d-0c300f816d73"
-WaypointHandler.RitualOfThornsFlagGUID = "DEN_Lockdown_State_Active_0b54c7d2-b7b1-4d0f-b8e4-0cf1ee32b1eb"
 WaypointHandler.destinations = {
     ['Arron'] = { x = 205.95933532715, y = 29.75, z = 505.13491821289 },
     ['The Hollow'] = { x = 188.07084655762, y = 19.72265625, z = 562.81359863281 },
@@ -23,13 +20,42 @@ WaypointHandler.destinations = {
 WaypointHandler.originalPosition = nil
 WaypointHandler.regionSwapRejected = false
 
+WaypointFlagsHandler = _Class:Create("WaypointFlagsHandler")
 
-function WaypointHandler:HasCharacterEverEnteredGrove(character)
-    return Osi.GetFlag(WaypointHandler.HasEnteredGroveFlagGUID, character) == 1
+WaypointFlagsHandler.HasEnteredGroveFlagGUID = "18cfaaeb-c0df-46ac-962d-0c300f816d73"
+WaypointFlagsHandler.RitualOfThornsFlagGUID = "DEN_Lockdown_State_Active_0b54c7d2-b7b1-4d0f-b8e4-0cf1ee32b1eb"
+WaypointFlagsHandler.HasVisitedAct3Flag = "11239767-48ad-4879-8312-b9164b6e4978" -- "VISITEDREGION_BGO_Main_A"
+
+
+function WaypointFlagsHandler:HasCharacterEverEnteredGrove(character)
+    return Osi.GetFlag(WaypointFlagsHandler.HasEnteredGroveFlagGUID, character) == 1
 end
 
-function WaypointHandler:HasRitualOfThornsBeenActivated(character)
-    return Osi.GetFlag(WaypointHandler.RitualOfThornsFlagGUID, character) == 1
+function WaypointFlagsHandler:HasRitualOfThornsBeenActivated(character)
+    return Osi.GetFlag(WaypointFlagsHandler.RitualOfThornsFlagGUID, character) == 1
+end
+
+function WaypointFlagsHandler:HasCharacterEverEnteredAct3(character)
+    return Osi.GetFlag(WaypointFlagsHandler.HasVisitedAct3Flag, Osi.GetHostCharacter()) == 1
+end
+
+--- Check if the character should be blocked from teleporting to the grove
+---@param character GUIDSTRING The character to check against
+---@return table blockageInfo A table containing blockage status and reason
+function WaypointFlagsHandler:CheckWaypointBlockage(character)
+    local reason = nil
+
+    if not self:HasCharacterEverEnteredGrove(character) then
+        reason = "Character has not entered grove yet"
+    elseif self:HasRitualOfThornsBeenActivated(character) then
+        reason = "Lockdown has happened"
+    elseif self:HasCharacterEverEnteredAct3(character) then
+        reason = "Character has entered Act 3"
+    end
+
+    local isBlocked = reason ~= nil
+
+    return { isBlocked = isBlocked, reason = reason }
 end
 
 function WaypointHandler:UnlockCustomEmeraldGroveWaypoint()
@@ -45,25 +71,13 @@ end
 
 --- Check flags/DBs for whether the Grove lockdown has happened already
 ---@param character GUIDSTRING The character to check against (won't even be used for DB check)
-function WaypointHandler:ShouldFlagsBlockTeleport(character)
-    local reason = ""
-    if WaypointHandler:HasCharacterEverEnteredGrove(character) == false then
-        reason = "Character has not entered grove yet"
-    elseif WaypointHandler:HasRitualOfThornsBeenActivated(character) == true then
-        reason = "Lockdown has happened"
-    end
-
-    return WaypointHandler:HasCharacterEverEnteredGrove(character) == false or
-        WaypointHandler:HasRitualOfThornsBeenActivated(character) == true, reason
-end
-
 function WaypointHandler:ShouldTeleportToGrove(character)
     local x, y, z = Osi.GetPosition(character)
     WaypointHandler.OriginalPosition = { character = character, x = x, y = y, z = z }
 
-    local shouldBlockTeleporting, reason = self:ShouldFlagsBlockTeleport(character)
-    if shouldBlockTeleporting then
-        WIEGPrint(1, "Not teleporting. Reason: " .. reason)
+    local waypointBlockageInfo = WaypointFlagsHandler:CheckWaypointBlockage(character)
+    if waypointBlockageInfo.isBlocked then
+        WIEGPrint(1, "Not teleporting. Reason: " .. waypointBlockageInfo.reason)
         return false
     elseif WaypointHandler.RegionSwapRejected then
         return false

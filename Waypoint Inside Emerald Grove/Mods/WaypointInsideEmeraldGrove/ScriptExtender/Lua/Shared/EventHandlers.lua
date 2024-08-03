@@ -1,13 +1,14 @@
 EHandlers = {}
 
 function EHandlers.OnLevelGameplayStarted(levelName, isEditorMode)
-    if WaypointHandler:HasCharacterEverEnteredGrove(Osi.GetHostCharacter()) then
+    if WaypointFlagsHandler:HasCharacterEverEnteredGrove(Osi.GetHostCharacter()) then
         WIEGDebug(1, "Character has entered grove at some point, trying to unlock custom waypoint")
         WaypointHandler:UnlockCustomEmeraldGroveWaypoint()
     end
 
-    if WaypointHandler:HasRitualOfThornsBeenActivated(Osi.GetHostCharacter()) then
-        WIEGDebug(1, "Ritual of Thorns has been activated, trying to lock custom waypoint")
+    local waypointBlockageInfo = WaypointFlagsHandler:CheckWaypointBlockage(Osi.GetHostCharacter())
+    if waypointBlockageInfo and waypointBlockageInfo.isBlocked then
+        WIEGDebug(1, "Locking custom waypoint. Reason: " .. waypointBlockageInfo.reason)
         WaypointHandler:LockCustomEmeraldGroveWaypoint()
     end
 end
