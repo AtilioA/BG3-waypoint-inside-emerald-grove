@@ -80,6 +80,7 @@ function WaypointHandler:ShouldTeleportToGrove(character)
         WIEGPrint(1, "Not teleporting. Reason: " .. waypointBlockageInfo.reason)
         return false
     elseif WaypointHandler.RegionSwapRejected then
+        WIEGPrint(2, "Region swap was rejected, shouldn't teleport to Grove.")
         return false
     else
         WIEGPrint(2,
