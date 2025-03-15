@@ -1,5 +1,5 @@
 {
-    "RequiredVersion": 19,
+    "RequiredVersion": 22,
     "ModTable": "WaypointInsideEmeraldGrove",
     "FeatureFlags": [
         "Lua"
