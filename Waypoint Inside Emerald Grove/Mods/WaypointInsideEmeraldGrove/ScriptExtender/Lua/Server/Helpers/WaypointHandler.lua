@@ -24,8 +24,9 @@ WaypointFlagsHandler = _Class:Create("WaypointFlagsHandler")
 
 WaypointFlagsHandler.HasEnteredGroveFlagGUID = "18cfaaeb-c0df-46ac-962d-0c300f816d73"
 WaypointFlagsHandler.RitualOfThornsFlagGUID = "DEN_Lockdown_State_Active_0b54c7d2-b7b1-4d0f-b8e4-0cf1ee32b1eb"
-WaypointFlagsHandler.HasVisitedAct3Flag = "11239767-48ad-4879-8312-b9164b6e4978" -- "VISITEDREGION_BGO_Main_A"
-
+WaypointFlagsHandler.HasVisitedAct3Flag =
+"VISITEDREGION_BGO_Main_A_40f06537-814f-4796-b012-5ffaa648a8d9"
+WaypointFlagsHandler.HasReachedAct2PNR = "Act2_PointOfNoReturnReached_a3155f30-b8f3-4db5-ac21-d3036f4426e3"
 
 function WaypointFlagsHandler:HasCharacterEverEnteredGrove(character)
     return Osi.GetFlag(WaypointFlagsHandler.HasEnteredGroveFlagGUID, character) == 1
@@ -35,8 +36,9 @@ function WaypointFlagsHandler:HasRitualOfThornsBeenActivated(character)
     return Osi.GetFlag(WaypointFlagsHandler.RitualOfThornsFlagGUID, character) == 1
 end
 
-function WaypointFlagsHandler:HasCharacterEverEnteredAct3(character)
-    return Osi.GetFlag(WaypointFlagsHandler.HasVisitedAct3Flag, Osi.GetHostCharacter()) == 1
+function WaypointFlagsHandler:HasCharacterProgressedEnoughToDisableWaypoint(character)
+    return Osi.GetFlag(WaypointFlagsHandler.HasVisitedAct3Flag, Osi.GetHostCharacter()) == 1 or
+        Osi.GetFlag(WaypointFlagsHandler.HasReachedAct2PNR, Osi.GetHostCharacter()) == 1
 end
 
 --- Check if the character should be blocked from teleporting to the grove
@@ -49,8 +51,8 @@ function WaypointFlagsHandler:CheckWaypointBlockage(character)
         reason = "Character has not entered grove yet"
     elseif self:HasRitualOfThornsBeenActivated(character) then
         reason = "Lockdown has happened"
-    elseif self:HasCharacterEverEnteredAct3(character) then
-        reason = "Character has entered Act 3"
+    elseif self:HasCharacterProgressedEnoughToDisableWaypoint(character) then
+        reason = "Character has entered Act 2 Point of No Return or Act 3"
     end
 
     local isBlocked = reason ~= nil

@@ -1,6 +1,6 @@
 EHandlers = {}
 
-function EHandlers.OnLevelGameplayStarted(levelName, isEditorMode)
+local function checkWaypointFlags()
     local waypointBlockageInfo = WaypointFlagsHandler:CheckWaypointBlockage(Osi.GetHostCharacter())
     if waypointBlockageInfo and waypointBlockageInfo.isBlocked then
         WIEGDebug(1, "Locking custom waypoint. Reason: " .. waypointBlockageInfo.reason)
@@ -9,6 +9,16 @@ function EHandlers.OnLevelGameplayStarted(levelName, isEditorMode)
         WIEGDebug(1, "Character has entered grove at some point, trying to unlock custom waypoint")
         WaypointHandler:UnlockCustomEmeraldGroveWaypoint()
     end
+end
+
+function EHandlers.OnLevelGameplayStarted(levelName, isEditorMode)
+    checkWaypointFlags()
+end
+
+function EHandlers.OnFlagSet(flag, character, value)
+    if Osi.IsInPartyWith(character, Osi.GetHostCharacter()) == 0 then return end
+
+    checkWaypointFlags()
 end
 
 function EHandlers.OnTeleportToWaypoint(character, trigger)

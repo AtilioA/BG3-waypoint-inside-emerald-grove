@@ -18,6 +18,7 @@ function SubscribedEvents.SubscribeToEvents()
     Ext.Osiris.RegisterListener("LevelGameplayStarted", 2, "after", conditionalWrapper(EHandlers.OnLevelGameplayStarted))
     Ext.Osiris.RegisterListener("TeleportToWaypoint", 2, "after", conditionalWrapper(EHandlers.OnTeleportToWaypoint))
     Ext.Osiris.RegisterListener("ReadyCheckFailed", 1, "after", conditionalWrapper(EHandlers.OnReadyCheckFailed))
+    Ext.Osiris.RegisterListener("FlagSet", 3, "after", conditionalWrapper(EHandlers.OnFlagSet))
 end
 
 return SubscribedEvents
